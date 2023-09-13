@@ -19,7 +19,7 @@ top: 1
 
 CMFColorButton, which is provided in the form of a combo box when selecting a color, is effective when there is not enough UI space, but it has the disadvantage of increasing the number of clicks for color selection. And CMFColorDialog can be selected while looking at many colors at once, but it's inevitably uncomfortable if you have to choose repeatedly because you have to work with a dialog box every time. Therefore, the class that allows CMFColorButton to be used in the form of a list box is the CMFColorBar class. This class allows you to list and select colors as shown below. This class also provides a 'select another color' function immediately, so you don't need to add a separate CMFColorDialog usage code when you need additional colors.
 
-![Crepe](https://mblogvideo-phinf.pstatic.net/MjAyMzA5MTNfNjMg/MDAxNjk0NTc5NTYyNjU3.bRADCjouXO7qM4AyVRFaXp2N0Z_IAWt_TRNtc26jVg0g.IpKedAmi1Oy24CUaUJPPeqvenz3Iiw_CMsDi_z2nxUQg.GIF.tipsware/color_bar1.GIF)
+![Crepe](/assets/images/color_bar1.mp4)
 
 Because this control cannot be selected in the Resource Editor, you must create it by giving it your own coordinates and IDs. For example, if you want to create this control with the control ID 2301 in the (10, 10, 200, 200) area, you can configure the code as shown below.
 
@@ -50,15 +50,15 @@ BOOL CExamUIDlg::OnInitDialog()
     m_color_rect_list.SetColor(RGB(0, 0, 0));
 
     // ... The code below is omitted...
-
-// ...
 ```
 
 If you use the code above, the output is as follows. The borders of the controls are not displayed separately, so you can draw them further or use the Picture control to display them.
 
-![Crepe](https://postfiles.pstatic.net/MjAyMzA5MTNfMTcg/MDAxNjk0NTgwNjg1OTQx.0SfWxJAhCzoHgzKYnphUPAI-kpH89U3KBGWKJSgI2w4g.Zs2czTZU8uLXLn8oSiQRnhNNk4T95Kx2c-ITEhbIxmAg.PNG.tipsware/20230913_135119_546.png)
+![Crepe](/assets/images/20230913_135943_224.png)
 
 And if you want to adjust the size of the colored square area, you can use the SetHorzMargin, SetVertMargin functions as shown below.
+
+![Crepe](/assets/images/20230913_135119_546.png)
 
 ```cpp
 // Adjust the margins of the colored squares.
@@ -73,6 +73,8 @@ m_color_rect_list.CreateControl(this, CRect(10, 10, 200, 200), 2301, 5);
 // Choose black from the colors listed.
 m_color_rect_list.SetColor(RGB(0, 0, 0));
 ```
+
+![Crepe](/assets/images/20230913_134629_199.png)
 
 And when you change the color selection in this control, a WM_COMMAND message occurs, so if you want to do something when you change the color, you can add the ON_COMMAND macro to the Message Map as shown below. In this example, since the ID of the control was 2301, we put 2301 in the first factor of ON_COMMAND and named the function OnChangeColor to be processed when this message occurs.
 
