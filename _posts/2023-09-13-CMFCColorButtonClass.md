@@ -5,10 +5,6 @@ subtitle: CMFCColorBar Class
 author: Baeco
 categories: MFC
 banner:
-  video: https://vjs.zencdn.net/v/oceans.mp4
-  loop: true
-  volume: 0.8
-  start_at: 8.5
   image: https://postfiles.pstatic.net/MjAyMzA5MTNfNjUg/MDAxNjk0NTgxNTkyNzM0.s5FPklQrdyOovFfLzGwAEyZV-9E5m7eDYWuDnFaeUZUg.h5OZdRLLPsXV5QepTRwDB5yX6uMOwKdO60-ah6kZrVcg.PNG.tipsware/KakaoTalk_20230702_175319468.png?type=w966
   opacity: 0.618
   background: "#000"
