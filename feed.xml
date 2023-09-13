@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/jekyll-theme-yat/feed.xml" rel="self" type="application/atom+xml" /><link href="/jekyll-theme-yat/" rel="alternate" type="text/html" /><updated>2023-09-13T09:05:17+00:00</updated><id>/jekyll-theme-yat/feed.xml</id><title type="html">Baeco Blog</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><author><name>Soungyub Kim</name></author><entry><title type="html">CMFCColorBar Class</title><link href="/jekyll-theme-yat/mfc/2023/09/13/CMFCColorButtonClass.html" rel="alternate" type="text/html" title="CMFCColorBar Class" /><published>2023-09-13T00:00:00+00:00</published><updated>2023-09-13T00:00:00+00:00</updated><id>/jekyll-theme-yat/mfc/2023/09/13/CMFCColorButtonClass</id><content type="html" xml:base="/jekyll-theme-yat/mfc/2023/09/13/CMFCColorButtonClass.html"><![CDATA[<h2 id="cmfccolorbutton">CMFCColorButton</h2>
+
+<p>CMFCColorButton, which is provided in the form of a combo box when selecting a color, is effective when there is not enough UI space, but it has the disadvantage of increasing the number of clicks for color selection. And CMFColorDialog can be selected while looking at many colors at once, but it’s inevitably uncomfortable if you have to choose repeatedly because you have to work with a dialog box every time.</p>
+
+<p>Therefore, the class that allows CMFColorButton to be used in the form of a list box is the CMFColorBar class. This class allows you to list and select colors as shown below. This class also provides a ‘select another color’ function immediately, so you don’t need to add a separate CMFColorDialog usage code when you need additional colors.</p>
+
+<p><img src="/assets/images/color_bar1.gif" alt="Crepe" /></p>
+
+<p>Because this control cannot be selected in the Resource Editor, you must create it by giving it your own coordinates and IDs. For example, if you want to create this control with the control ID 2301 in the (10, 10, 200, 200) area, you can configure the code as shown below.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Declare the class member variable as follows.</span>
+<span class="c1">// CExamUIDlg Dialog</span>
+<span class="k">class</span> <span class="nc">CExamUIDlg</span> <span class="o">:</span> <span class="k">public</span> <span class="n">CDialogEx</span>
+<span class="p">{</span>
+<span class="nl">private:</span>
+    <span class="n">CMFCColorBar</span> <span class="n">m_color_rect_list</span><span class="p">;</span>
+
+<span class="c1">// ...</span>
+</code></pre></div></div>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// CExamUIDlg Message Handler</span>
+<span class="n">BOOL</span> <span class="n">CExamUIDlg</span><span class="o">::</span><span class="n">OnInitDialog</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">CDialogEx</span><span class="o">::</span><span class="n">OnInitDialog</span><span class="p">();</span>
+ 
+    <span class="n">SetIcon</span><span class="p">(</span><span class="n">m_hIcon</span><span class="p">,</span> <span class="n">TRUE</span><span class="p">);</span>
+    <span class="n">SetIcon</span><span class="p">(</span><span class="n">m_hIcon</span><span class="p">,</span> <span class="n">FALSE</span><span class="p">);</span>
+
+    <span class="c1">// Create a control 190 wide and 190 high at 10 and 10 positions.</span>
+    <span class="c1">// The ID of this control is 2301 and displays 5 colors per line.</span>
+    <span class="n">m_color_rect_list</span><span class="p">.</span><span class="n">CreateControl</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">CRect</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="mi">2301</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+    <span class="c1">// Choose black from the colors listed.</span>
+    <span class="n">m_color_rect_list</span><span class="p">.</span><span class="n">SetColor</span><span class="p">(</span><span class="n">RGB</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+
+    <span class="c1">// ... The code below is omitted...</span>
+</code></pre></div></div>
+
+<p>If you use the code above, the output is as follows. The borders of the controls are not displayed separately, so you can draw them further or use the Picture control to display them.</p>
+
+<p><img src="/assets/images/20230913_135943_224.png" alt="Crepe" /></p>
+
+<p>If you want to select additional colors in addition to the 20 displayed colors, call the Enable OtherButton function as shown below. However, if this function is called before the control is created as shown below, the layout will be applied normally, but if it is called after the CreateControl function is called, an additional function that adjusts the layout will need to be called.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Add More Color Selection Button</span>
+<span class="n">m_color_rect_list</span><span class="p">.</span><span class="n">EnableOtherButton</span><span class="p">(</span><span class="s">L"Select different color"</span><span class="p">);</span>
+
+<span class="c1">// The ID of this control is 2301 and displays 5 colors per line.</span>
+<span class="n">m_color_rect_list</span><span class="p">.</span><span class="n">CreateControl</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">CRect</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="mi">2301</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="c1">// Choose black from the colors listed.</span>
+<span class="n">m_color_rect_list</span><span class="p">.</span><span class="n">SetColor</span><span class="p">(</span><span class="n">RGB</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>When the EnableOtherButton function is called as shown above, the output shape changes as shown below.</p>
+
+<p><img src="/assets/images/20230913_135119_546.png" alt="Crepe" /></p>
+
+<p>And if you want to adjust the size of the colored square area, you can use the SetHorzMargin, SetVertMargin functions as shown below.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Adjust the margins of the colored squares.</span>
+<span class="n">m_color_rect_list</span><span class="p">.</span><span class="n">SetHorzMargin</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+<span class="n">m_color_rect_list</span><span class="p">.</span><span class="n">SetVertMargin</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+<span class="c1">// Add More Color Selection Button</span>
+<span class="n">m_color_rect_list</span><span class="p">.</span><span class="n">EnableOtherButton</span><span class="p">(</span><span class="s">L"Select different color"</span><span class="p">);</span>
+
+<span class="c1">// Create a control 190 wide and 190 high at 10 and 10 positions.</span>
+<span class="c1">// The ID of this control is 2301 and displays 5 colors per line.</span>
+<span class="n">m_color_rect_list</span><span class="p">.</span><span class="n">CreateControl</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">CRect</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="mi">2301</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="c1">// Choose black from the colors listed.</span>
+<span class="n">m_color_rect_list</span><span class="p">.</span><span class="n">SetColor</span><span class="p">(</span><span class="n">RGB</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p>Adjusting as above reduces the overall area of color display.</p>
+
+<p><img src="/assets/images/20230913_134629_199.png" alt="Crepe" /></p>
+
+<p>And when you change the color selection in this control, a WM_COMMAND message occurs, so if you want to do something when you change the color, you can add the ON_COMMAND macro to the Message Map as shown below. In this example, since the ID of the control was 2301, we put 2301 in the first factor of ON_COMMAND and named the function OnChangeColor to be processed when this message occurs.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">BEGIN_MESSAGE_MAP</span><span class="p">(</span><span class="n">CExamUIDlg</span><span class="p">,</span> <span class="n">CDialogEx</span><span class="p">)</span>
+    <span class="n">ON_WM_PAINT</span><span class="p">()</span>
+    <span class="n">ON_WM_QUERYDRAGICON</span><span class="p">()</span>
+    <span class="n">ON_WM_DESTROY</span><span class="p">()</span>
+    <span class="n">ON_COMMAND</span><span class="p">(</span><span class="mi">2301</span><span class="p">,</span> <span class="n">OnChangeColor</span><span class="p">)</span>
+<span class="n">END_MESSAGE_MAP</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>The OnChangeColor function adds the function prototype to the class header file as shown below.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">public:</span>
+    <span class="n">afx_msg</span> <span class="kt">void</span> <span class="nf">OnChangeColor</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>You can add the function implementation to the class source file as shown below. It is recommended that you add these simple tasks yourself because the class wizard sometimes has problems adding user messages.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="n">CExamUIDlg</span><span class="o">::</span><span class="n">OnChangeColor</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="c1">// Gets the selected color value.</span>
+  <span class="n">COLORREF</span> <span class="n">color</span> <span class="o">=</span> <span class="n">m_color_rect_list</span><span class="p">.</span><span class="n">GetColor</span><span class="p">();</span>
+  
+  <span class="c1">// Adding code that uses color</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The original text of this blog is in the link below.</p>
+
+<p><a href="https://blog.naver.com/tipsware/223210301179">https://blog.naver.com/tipsware/223210301179</a></p>]]></content><author><name>Soungyub Kim</name></author><category term="MFC" /><category term="mfc" /><category term="cmfccolorbutton" /><summary type="html"><![CDATA[CMFCColorButton]]></summary></entry></feed>
