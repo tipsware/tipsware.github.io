@@ -162,8 +162,8 @@ yat:
 # Page default value
 # defaults:
 #   home:
-#     heading: "Baeco Blog"
-#     subheading: "C/C++ Programmer"
+#     heading: "Baeco's Blog"
+#     subheading: "C,C++ Programmer / Microsoft MVP"
 #     banner: "/assets/images/banners/white_tiger.png"
 
 # Banner default settings
