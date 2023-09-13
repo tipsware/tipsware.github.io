@@ -7,7 +7,7 @@ categories: MFC
 banner:
   image: https://postfiles.pstatic.net/MjAyMzA5MTNfNjUg/MDAxNjk0NTgxNTkyNzM0.s5FPklQrdyOovFfLzGwAEyZV-9E5m7eDYWuDnFaeUZUg.h5OZdRLLPsXV5QepTRwDB5yX6uMOwKdO60-ah6kZrVcg.PNG.tipsware/KakaoTalk_20230702_175319468.png
   opacity: 0.618
-  background: "#000"
+  background: "#0CADFE"
   height: "100vh"
   min_height: "38vh"
   heading_style: "font-size: 4.25em; font-weight: bold; text-decoration: underline"
@@ -59,3 +59,50 @@ BOOL CExamUIDlg::OnInitDialog()
 If you use the code above, the output is as follows. The borders of the controls are not displayed separately, so you can draw them further or use the Picture control to display them.
 
 ![Crepe](https://postfiles.pstatic.net/MjAyMzA5MTNfMTcg/MDAxNjk0NTgwNjg1OTQx.0SfWxJAhCzoHgzKYnphUPAI-kpH89U3KBGWKJSgI2w4g.Zs2czTZU8uLXLn8oSiQRnhNNk4T95Kx2c-ITEhbIxmAg.PNG.tipsware/20230913_135119_546.png)
+
+And if you want to adjust the size of the colored square area, you can use the SetHorzMargin, SetVertMargin functions as shown below.
+
+```cpp
+// Adjust the margins of the colored squares.
+m_color_rect_list.SetHorzMargin(15);
+m_color_rect_list.SetVertMargin(15);
+// Add More Color Selection Button
+m_color_rect_list.EnableOtherButton(L"Select different color");
+
+// Create a control 190 wide and 190 high at 10 and 10 positions.
+// The ID of this control is 2301 and displays 5 colors per line.
+m_color_rect_list.CreateControl(this, CRect(10, 10, 200, 200), 2301, 5);
+// Choose black from the colors listed.
+m_color_rect_list.SetColor(RGB(0, 0, 0));
+```
+
+And when you change the color selection in this control, a WM_COMMAND message occurs, so if you want to do something when you change the color, you can add the ON_COMMAND macro to the Message Map as shown below. In this example, since the ID of the control was 2301, we put 2301 in the first factor of ON_COMMAND and named the function OnChangeColor to be processed when this message occurs.
+
+```cpp
+BEGIN_MESSAGE_MAP(CExamUIDlg, CDialogEx)
+    ON_WM_PAINT()
+    ON_WM_QUERYDRAGICON()
+    ON_WM_DESTROY()
+    ON_COMMAND(2301, OnChangeColor)
+END_MESSAGE_MAP()
+```
+
+The OnChangeColor function adds the function prototype to the class header file as shown below.
+
+```cpp
+public:
+    afx_msg void OnChangeColor();
+```
+
+You can add the function implementation to the class source file as shown below. It is recommended that you add these simple tasks yourself because the class wizard sometimes has problems adding user messages.
+
+```cpp
+void CExamUIDlg::OnChangeColor()
+{
+  // Gets the selected color value.
+  COLORREF color = m_color_rect_list.GetColor();
+  
+  // Adding code that uses color
+
+}
+```
