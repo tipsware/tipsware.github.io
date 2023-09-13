@@ -106,3 +106,8 @@ void CExamUIDlg::OnChangeColor()
 
 }
 ```
+
+The original text of this blog is in the link below.
+[https://blog.naver.com/tipsware/223210301179]
+
+[https://blog.naver.com/tipsware/223210301179]: https://blog.naver.com/tipsware/223210301179
