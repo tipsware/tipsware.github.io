@@ -15,15 +15,21 @@ tags: mfc cmfccolorbutton
 top: 1
 ---
 
+
 ## CMFColorButton
+
 
 CMFColorButton, which is provided in the form of a combo box when selecting a color, is effective when there is not enough UI space, but it has the disadvantage of increasing the number of clicks for color selection. And CMFColorDialog can be selected while looking at many colors at once, but it's inevitably uncomfortable if you have to choose repeatedly because you have to work with a dialog box every time. 
 
+
 Therefore, the class that allows CMFColorButton to be used in the form of a list box is the CMFColorBar class. This class allows you to list and select colors as shown below. This class also provides a 'select another color' function immediately, so you don't need to add a separate CMFColorDialog usage code when you need additional colors.
+
 
 ![Crepe](/assets/images/color_bar1.gif)
 
+
 Because this control cannot be selected in the Resource Editor, you must create it by giving it your own coordinates and IDs. For example, if you want to create this control with the control ID 2301 in the (10, 10, 200, 200) area, you can configure the code as shown below.
+
 
 ```cpp
 // Declare the class member variable as follows.
@@ -35,6 +41,7 @@ private:
 
 // ...
 ```
+
 
 ```cpp
 // CExamUIDlg Message Handler
@@ -54,11 +61,15 @@ BOOL CExamUIDlg::OnInitDialog()
     // ... The code below is omitted...
 ```
 
+
 If you use the code above, the output is as follows. The borders of the controls are not displayed separately, so you can draw them further or use the Picture control to display them.
+
 
 ![Crepe](/assets/images/20230913_135943_224.png)
 
+
 If you want to select additional colors in addition to the 20 displayed colors, call the Enable OtherButton function as shown below. However, if this function is called before the control is created as shown below, the layout will be applied normally, but if it is called after the CreateControl function is called, an additional function that adjusts the layout will need to be called.
+
 
 ```cpp
 // Add More Color Selection Button
@@ -70,9 +81,12 @@ m_color_rect_list.CreateControl(this, CRect(10, 10, 200, 200), 2301, 5);
 m_color_rect_list.SetColor(RGB(0, 0, 0));
 ```
 
+
 When the EnableOtherButton function is called as shown above, the output shape changes as shown below.
 
+
 ![Crepe](/assets/images/20230913_135119_546.png)
+
 
 And if you want to adjust the size of the colored square area, you can use the SetHorzMargin, SetVertMargin functions as shown below.
 
@@ -91,11 +105,15 @@ m_color_rect_list.CreateControl(this, CRect(10, 10, 200, 200), 2301, 5);
 m_color_rect_list.SetColor(RGB(0, 0, 0));
 ```
 
+
 Adjusting as above reduces the overall area of color display.
+
 
 ![Crepe](/assets/images/20230913_134629_199.png)
 
+
 And when you change the color selection in this control, a WM_COMMAND message occurs, so if you want to do something when you change the color, you can add the ON_COMMAND macro to the Message Map as shown below. In this example, since the ID of the control was 2301, we put 2301 in the first factor of ON_COMMAND and named the function OnChangeColor to be processed when this message occurs.
+
 
 ```cpp
 BEGIN_MESSAGE_MAP(CExamUIDlg, CDialogEx)
@@ -106,14 +124,18 @@ BEGIN_MESSAGE_MAP(CExamUIDlg, CDialogEx)
 END_MESSAGE_MAP()
 ```
 
+
 The OnChangeColor function adds the function prototype to the class header file as shown below.
+
 
 ```cpp
 public:
     afx_msg void OnChangeColor();
 ```
 
+
 You can add the function implementation to the class source file as shown below. It is recommended that you add these simple tasks yourself because the class wizard sometimes has problems adding user messages.
+
 
 ```cpp
 void CExamUIDlg::OnChangeColor()
@@ -127,6 +149,7 @@ void CExamUIDlg::OnChangeColor()
 ```
 
 The original text of this blog is in the link below.
+
 [https://blog.naver.com/tipsware/223210301179]
 
 [https://blog.naver.com/tipsware/223210301179]: https://blog.naver.com/tipsware/223210301179
