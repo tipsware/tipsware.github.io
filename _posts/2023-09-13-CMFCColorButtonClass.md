@@ -19,7 +19,7 @@ top: 1
 
 CMFColorButton, which is provided in the form of a combo box when selecting a color, is effective when there is not enough UI space, but it has the disadvantage of increasing the number of clicks for color selection. And CMFColorDialog can be selected while looking at many colors at once, but it's inevitably uncomfortable if you have to choose repeatedly because you have to work with a dialog box every time. Therefore, the class that allows CMFColorButton to be used in the form of a list box is the CMFColorBar class. This class allows you to list and select colors as shown below. This class also provides a 'select another color' function immediately, so you don't need to add a separate CMFColorDialog usage code when you need additional colors.
 
-![Crepe](/assets/images/color_bar1.mp4)
+![Crepe](/assets/images/color_bar1.gif)
 
 Because this control cannot be selected in the Resource Editor, you must create it by giving it your own coordinates and IDs. For example, if you want to create this control with the control ID 2301 in the (10, 10, 200, 200) area, you can configure the code as shown below.
 
