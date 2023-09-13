@@ -33,7 +33,7 @@ Therefore, the class that allows CMFColorButton to be used in the form of a list
 This class also provides a 'select another color' function immediately, so you don't need to add a separate CMFColorDialog usage code when you need additional colors.
 
 
-![Crepe](https://mblogvideo-phinf.pstatic.net/MjAyMzA5MTNfNjMg/MDAxNjk0NTc5NTYyNjU3.bRADCjouXO7qM4AyVRFaXp2N0Z_IAWt_TRNtc26jVg0g.IpKedAmi1Oy24CUaUJPPeqvenz3Iiw_CMsDi_z2nxUQg.GIF.tipsware/color_bar1.GIF?type=mp4w800)
+![Crepe](https://mblogvideo-phinf.pstatic.net/MjAyMzA5MTNfNjMg/MDAxNjk0NTc5NTYyNjU3.bRADCjouXO7qM4AyVRFaXp2N0Z_IAWt_TRNtc26jVg0g.IpKedAmi1Oy24CUaUJPPeqvenz3Iiw_CMsDi_z2nxUQg.GIF.tipsware/color_bar1.GIF)
 
 
 Because this control cannot be selected in the Resource Editor, you must create it by giving it your own coordinates and IDs. 
@@ -74,6 +74,9 @@ BOOL CExamUIDlg::OnInitDialog()
 If you use the code above, the output is as follows. The borders of the controls are not displayed separately, 
 
 so you can draw them further or use the Picture control to display them.
+
+![Crepe](https://postfiles.pstatic.net/MjAyMzA5MTNfMTcg/MDAxNjk0NTgwNjg1OTQx.0SfWxJAhCzoHgzKYnphUPAI-kpH89U3KBGWKJSgI2w4g.Zs2czTZU8uLXLn8oSiQRnhNNk4T95Kx2c-ITEhbIxmAg.PNG.tipsware/20230913_135119_546.png)
+
 
 
 ## section 2
