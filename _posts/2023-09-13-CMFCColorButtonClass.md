@@ -5,7 +5,7 @@ subtitle: CMFCColorBar Class
 author: Baeco
 categories: MFC
 banner:
-  image: https://postfiles.pstatic.net/MjAyMzA5MTNfNjUg/MDAxNjk0NTgxNTkyNzM0.s5FPklQrdyOovFfLzGwAEyZV-9E5m7eDYWuDnFaeUZUg.h5OZdRLLPsXV5QepTRwDB5yX6uMOwKdO60-ah6kZrVcg.PNG.tipsware/KakaoTalk_20230702_175319468.png?type=w966
+  image: https://postfiles.pstatic.net/MjAyMzA5MTNfNjUg/MDAxNjk0NTgxNTkyNzM0.s5FPklQrdyOovFfLzGwAEyZV-9E5m7eDYWuDnFaeUZUg.h5OZdRLLPsXV5QepTRwDB5yX6uMOwKdO60-ah6kZrVcg.PNG.tipsware/KakaoTalk_20230702_175319468.png
   opacity: 0.618
   background: "#000"
   height: "100vh"
