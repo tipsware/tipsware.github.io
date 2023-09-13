@@ -73,7 +73,7 @@ If you want to select additional colors in addition to the 20 displayed colors, 
 
 ```cpp
 // Add More Color Selection Button
-m_color_rect_list.EnableOtherButton(L"다른 색 선택");
+m_color_rect_list.EnableOtherButton(L"Select different color");
 
 // The ID of this control is 2301 and displays 5 colors per line.
 m_color_rect_list.CreateControl(this, CRect(10, 10, 200, 200), 2301, 5);
