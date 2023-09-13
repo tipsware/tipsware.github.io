@@ -17,7 +17,9 @@ top: 1
 
 ## CMFColorButton
 
-CMFColorButton, which is provided in the form of a combo box when selecting a color, is effective when there is not enough UI space, but it has the disadvantage of increasing the number of clicks for color selection. And CMFColorDialog can be selected while looking at many colors at once, but it's inevitably uncomfortable if you have to choose repeatedly because you have to work with a dialog box every time. Therefore, the class that allows CMFColorButton to be used in the form of a list box is the CMFColorBar class. This class allows you to list and select colors as shown below. This class also provides a 'select another color' function immediately, so you don't need to add a separate CMFColorDialog usage code when you need additional colors.
+CMFColorButton, which is provided in the form of a combo box when selecting a color, is effective when there is not enough UI space, but it has the disadvantage of increasing the number of clicks for color selection. And CMFColorDialog can be selected while looking at many colors at once, but it's inevitably uncomfortable if you have to choose repeatedly because you have to work with a dialog box every time. 
+
+Therefore, the class that allows CMFColorButton to be used in the form of a list box is the CMFColorBar class. This class allows you to list and select colors as shown below. This class also provides a 'select another color' function immediately, so you don't need to add a separate CMFColorDialog usage code when you need additional colors.
 
 ![Crepe](/assets/images/color_bar1.gif)
 
@@ -56,9 +58,24 @@ If you use the code above, the output is as follows. The borders of the controls
 
 ![Crepe](/assets/images/20230913_135943_224.png)
 
-And if you want to adjust the size of the colored square area, you can use the SetHorzMargin, SetVertMargin functions as shown below.
+If you want to select additional colors in addition to the 20 displayed colors, call the Enable OtherButton function as shown below. However, if this function is called before the control is created as shown below, the layout will be applied normally, but if it is called after the CreateControl function is called, an additional function that adjusts the layout will need to be called.
+
+```cpp
+// Add More Color Selection Button
+m_color_rect_list.EnableOtherButton(L"다른 색 선택");
+
+// The ID of this control is 2301 and displays 5 colors per line.
+m_color_rect_list.CreateControl(this, CRect(10, 10, 200, 200), 2301, 5);
+// Choose black from the colors listed.
+m_color_rect_list.SetColor(RGB(0, 0, 0));
+```
+
+When the EnableOtherButton function is called as shown above, the output shape changes as shown below.
 
 ![Crepe](/assets/images/20230913_135119_546.png)
+
+And if you want to adjust the size of the colored square area, you can use the SetHorzMargin, SetVertMargin functions as shown below.
+
 
 ```cpp
 // Adjust the margins of the colored squares.
@@ -73,6 +90,8 @@ m_color_rect_list.CreateControl(this, CRect(10, 10, 200, 200), 2301, 5);
 // Choose black from the colors listed.
 m_color_rect_list.SetColor(RGB(0, 0, 0));
 ```
+
+Adjusting as above reduces the overall area of color display.
 
 ![Crepe](/assets/images/20230913_134629_199.png)
 
