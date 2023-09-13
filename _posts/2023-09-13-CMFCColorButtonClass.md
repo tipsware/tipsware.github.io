@@ -7,8 +7,8 @@ banner:
   image: /assets/images/color_bar1.gif
   opacity: 0.618
   background: "#000"
-  height: "100vh"
-  min_height: "38vh"
+  height: "30vh"
+  min_height: "10vh"
   heading_style: "font-size: 4.25em; font-weight: bold; text-decoration: underline"
   subheading_style: "color: gold"
 tags: mfc cmfccolorbutton
